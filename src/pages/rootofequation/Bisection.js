@@ -4,8 +4,9 @@ import axios from 'axios'
 
 const Bisection = () => {
     const [data, setData] = useState({
-        xl: '',
-        xr: '',
+        eq: '(x^4)-13',
+        xl: 1.5,
+        xr: 2.0,
         error: 0.000001,
     })
     const [ans, setAns] = useState(null)
@@ -24,7 +25,12 @@ const Bisection = () => {
                                 type="text"
                                 placeholder="Equation"
                                 defaultValue="(x^4)-13"
-                                disabled
+                                onChange={(e) => {
+                                    setData({
+                                        ...data,
+                                        eq: e.target.value,
+                                    })
+                                }}
                             />
                         </Col>
                     </Form.Group>

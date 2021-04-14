@@ -3,6 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 const NewtonRaphson = () => {
     const [data, setData] = useState({
+        eq: '(x^2)-7',
         x0: 0,
         error: 0.000001,
     })
@@ -22,7 +23,12 @@ const NewtonRaphson = () => {
                                 type="text"
                                 placeholder="Equation"
                                 defaultValue="(x^2)-7"
-                                disabled
+                                onChange={(e) => {
+                                    setData({
+                                        ...data,
+                                        eq: e.target.value,
+                                    })
+                                }}
                             />
                         </Col>
                     </Form.Group>

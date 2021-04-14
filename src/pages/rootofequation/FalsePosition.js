@@ -3,6 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 const FalsePosition = () => {
     const [data, setData] = useState({
+        eq: '(x^4)-13',
         xl: '',
         xr: '',
         error: 0.000001,
@@ -24,7 +25,12 @@ const FalsePosition = () => {
                                 type="text"
                                 placeholder="Equation"
                                 defaultValue="(x^4)-13"
-                                disabled
+                                onChange={(e) => {
+                                    setData({
+                                        ...data,
+                                        eq: e.target.value,
+                                    })
+                                }}
                             />
                         </Col>
                     </Form.Group>

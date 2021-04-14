@@ -63,17 +63,14 @@ const NavBar = () => {
                             title="Interpolation"
                             id="basic-nav-dropdown"
                         >
-                            <NavDropdown.Item href="#action/3.1">
-                                Action
+                            <NavDropdown.Item as={Link} to="/newtondivide">
+                                Newton's divided difference
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
+                            <NavDropdown.Item as={Link} to="/lagrange">
+                                Lagrange
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                                Something
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
+                                Spline
                             </NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Regression" id="basic-nav-dropdown">

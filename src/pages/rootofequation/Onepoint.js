@@ -3,6 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 const Onepoint = () => {
     const [data, setData] = useState({
+        eq: '(1/4)+(x/2)',
         x0: 0,
         error: 0.000001,
     })
@@ -22,7 +23,12 @@ const Onepoint = () => {
                                 type="text"
                                 placeholder="Equation"
                                 defaultValue="(1/4)+(x/2)"
-                                disabled
+                                onChange={(e) => {
+                                    setData({
+                                        ...data,
+                                        eq: e.target.value,
+                                    })
+                                }}
                             />
                         </Col>
                     </Form.Group>
