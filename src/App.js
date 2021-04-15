@@ -24,10 +24,10 @@ function App() {
     return (
         <Router>
             <NavBar></NavBar>
+            <Route path={'/home'}>
+                <Home />
+            </Route>
             <Switch>
-                <Route path={'/home'}>
-                    <Home />
-                </Route>
                 <Route path={'/bisection'}>
                     <Bisection />
                 </Route>

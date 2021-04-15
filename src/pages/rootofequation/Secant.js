@@ -1,4 +1,5 @@
 import { Form, Row, Col, Button, Container, Table } from 'react-bootstrap'
+import { Line } from 'react-chartjs-2'
 import { useState } from 'react'
 import axios from 'axios'
 
@@ -11,6 +12,22 @@ const Secant = () => {
     })
     const [ans, setAns] = useState(null)
     const [check, setCheck] = useState(null)
+    const datas = {
+        labels: [],
+        datasets: [
+            {
+                label: '# Secant Method',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgb(32, 3, 11)',
+                borderColor: 'rgba(32, 3, 11, 0.2)',
+            },
+        ],
+    }
+    ans !== null &&
+        ans.map(
+            (r) => (datas.labels.push(r.x), datas.datasets[0].data.push(r.fx))
+        )
     return (
         <div>
             <Container className="mt-5 p-4 rounded bg-light">
@@ -115,27 +132,32 @@ const Secant = () => {
             {ans !== null && check && (
                 <Container className="mt-5 p-4 rounded bg-light">
                     <Table striped bordered hover variant="dark">
-                        <tr>
-                            <th>#Iteration</th>
-                            <th>X0</th>
-                            <th>X1</th>
-                            <th>fx(0)</th>
-                            <th>fx(1)</th>
-                            <th>delta(X)</th>
-                            <th>Error</th>
-                        </tr>
-                        {ans.map((r) => (
-                            <tr key={r.iteration}>
-                                <td>{r.iteration}</td>
-                                <td>{r.x_zero}</td>
-                                <td>{r.x_one}</td>
-                                <td>{r.fx1}</td>
-                                <td>{r.fx2}</td>
-                                <td>{r.x}</td>
-                                <td>{r.e}</td>
+                        <thead>
+                            <tr>
+                                <th>#Iteration</th>
+                                <th>X0</th>
+                                <th>X1</th>
+                                <th>fx(0)</th>
+                                <th>fx(1)</th>
+                                <th>delta(X)</th>
+                                <th>Error</th>
                             </tr>
-                        ))}
+                        </thead>
+                        <tbody>
+                            {ans.map((r) => (
+                                <tr key={r.iteration}>
+                                    <td>{r.iteration}</td>
+                                    <td>{r.x_zero}</td>
+                                    <td>{r.x_one}</td>
+                                    <td>{r.fx1}</td>
+                                    <td>{r.fx2}</td>
+                                    <td>{r.x}</td>
+                                    <td>{r.e}</td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </Table>
+                    <Line data={datas} width={'20%'} height={'10%'} />
                 </Container>
             )}
         </div>

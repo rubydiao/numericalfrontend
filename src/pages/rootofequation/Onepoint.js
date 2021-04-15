@@ -1,4 +1,5 @@
 import { Form, Row, Col, Button, Container, Table } from 'react-bootstrap'
+import { Line } from 'react-chartjs-2'
 import { useState } from 'react'
 import axios from 'axios'
 const Onepoint = () => {
@@ -9,6 +10,22 @@ const Onepoint = () => {
     })
     const [ans, setAns] = useState(null)
     const [check, setCheck] = useState(null)
+    const datas = {
+        labels: [],
+        datasets: [
+            {
+                label: '# Onepoint Iteration Method',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgb(32, 3, 11)',
+                borderColor: 'rgba(32, 3, 11, 0.2)',
+            },
+        ],
+    }
+    ans !== null &&
+        ans.map(
+            (r) => (datas.labels.push(r.xi), datas.datasets[0].data.push(r.fx))
+        )
     return (
         <div>
             <Container className="mt-5 p-4 rounded bg-light">
@@ -94,21 +111,26 @@ const Onepoint = () => {
             {ans !== null && check && (
                 <Container className="mt-5 p-4 rounded bg-light">
                     <Table striped bordered hover variant="dark">
-                        <tr>
-                            <th>#Iteration</th>
-                            <th>X0</th>
-                            <th>Xi</th>
-                            <th>Error</th>
-                        </tr>
-                        {ans.map((r) => (
-                            <tr key={r.iteration}>
-                                <td>{r.iteration}</td>
-                                <td>{r.x}</td>
-                                <td>{r.xi}</td>
-                                <td>{r.er}</td>
+                        <thead>
+                            <tr>
+                                <th>#Iteration</th>
+                                <th>X0</th>
+                                <th>Xi</th>
+                                <th>Error</th>
                             </tr>
-                        ))}
+                        </thead>
+                        <tbody>
+                            {ans.map((r) => (
+                                <tr key={r.iteration}>
+                                    <td>{r.iteration}</td>
+                                    <td>{r.x}</td>
+                                    <td>{r.xi}</td>
+                                    <td>{r.er}</td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </Table>
+                    <Line data={datas} width={'20%'} height={'10%'} />
                 </Container>
             )}
         </div>
