@@ -69,7 +69,7 @@ const NavBar = () => {
                             <NavDropdown.Item as={Link} to="/lagrange">
                                 Lagrange
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">
+                            <NavDropdown.Item as={Link} to="/spline">
                                 Spline
                             </NavDropdown.Item>
                         </NavDropdown>

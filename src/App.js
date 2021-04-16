@@ -14,6 +14,7 @@ import Seidel from './pages/linearalgebra/Seidel'
 import Conjugate from './pages/linearalgebra/Conjugate'
 import NewtonDivide from './pages/interpolation/Newton'
 import Lagrange from './pages/interpolation/Lagrange'
+import Spline from './pages/interpolation/Spline'
 import LinearRegression from './pages/regression/Linear'
 import PolynomialRegression from './pages/regression/Polynomial'
 import MultipleLinearRegression from './pages/regression/Multiple'
@@ -69,6 +70,9 @@ function App() {
                 </Route>
                 <Route path={'/lagrange'}>
                     <Lagrange />
+                </Route>
+                <Route path={'/spline'}>
+                    <Spline />
                 </Route>
                 <Route path={'/linearregression'}>
                     <LinearRegression />
