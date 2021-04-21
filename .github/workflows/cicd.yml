@@ -1,0 +1,24 @@
+name: cicd
+
+on:
+  push: 
+    branches: [ main ]
+jobs:
+  push_to_registry: 
+    name: Up to docker hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Docker Login
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - name: Create Docker Build 
+        run: |
+          docker build . -t narutchai/numercial-frontend:latest
+      - name: Up to Docker
+        run: |
+          docker push narutchai/numercial-frontend:latest
